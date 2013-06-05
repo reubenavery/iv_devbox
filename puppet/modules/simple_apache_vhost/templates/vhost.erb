@@ -1,0 +1,44 @@
+<VirtualHost *:<%= @http_port_final %>>
+    DocumentRoot <%= @base_path %>
+    <Directory <%= @base_path %>/>
+        Options <%= Array(http_options_final).join(' ') %>
+        AllowOverride <%= Array(http_override_final).join(' ') %>
+        Order allow,deny
+        allow from all
+        ServerSignature Off
+
+        RewriteEngine On
+<%- if redirect_to_ssl -%>
+        RewriteCond %{HTTPS} off
+        RewriteRule .* https://%{HTTP_HOST}:<%= @https_port_final %>%{REQUEST_URI} [L,R=301]
+<%- else -%>
+        RewriteCond %{REQUEST_FILENAME} -s [OR]
+        RewriteCond %{REQUEST_FILENAME} -l [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^.*$ - [NC,L]
+        RewriteRule ^.*$ /index.php [NC,L]
+<%- end -%>
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:<%= @https_port_final %>>
+    SSLEngine On
+    SSLCertificateFile /etc/apache2/ssl/apache.pem
+    SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+
+    DocumentRoot <%= @base_path %>
+    <Directory <%= @base_path %>/>
+        Options <%= Array(https_options_final).join(' ') %>
+        AllowOverride <%= Array(https_override_final).join(' ') %>
+        Order allow,deny
+        allow from all
+        ServerSignature Off
+
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} -s [OR]
+        RewriteCond %{REQUEST_FILENAME} -l [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^.*$ - [NC,L]
+        RewriteRule ^.*$ /index.php [NC,L]
+    </Directory>
+</VirtualHost>

@@ -1,0 +1,178 @@
+<% backends.each do |backend| %>
+backend <%= backend[0] %> {
+  .host                  = "<%= backend[1] %>";
+  .port                  = "<%= http_port %>";
+  .connect_timeout       = <%= connect_timeout %>;
+  .first_byte_timeout    = <%= connect_timeout %>;
+  .between_bytes_timeout = <%= connect_timeout %>;
+  .probe = {
+    .request =
+      "GET <%= health_check_url %> HTTP/1.1"
+      "Host: <%= http_host %>"
+      "Connection: close";
+    .timeout = <%= health_check_timeout %>;
+    .interval = <%= health_check_interval %>;
+    .window = <%= health_check_window %>;
+    .threshold = <%= health_check_threshold %>;
+  }
+}
+
+backend noprobe<%= backend[0] %> {
+  .host                  = "<%= backend[1] %>";
+  .port                  = "<%= http_port %>";
+  .connect_timeout       = 300s;
+  .first_byte_timeout    = 300s;
+  .between_bytes_timeout = 300s;
+}
+<% end %>
+
+director default <%= director_type %> {
+<% backends.each do |backend| %>  { .backend = <%= backend[0] %>; }<% end %>
+}
+
+director administrators <%= director_type %> {
+<% backends.each do |backend| %>  { .backend = noprobe<%= backend[0] %>; }<% end %>
+}
+
+sub vcl_recv {
+  if (req.request != "GET" &&
+    req.request != "HEAD" &&
+    req.request != "PUT" &&
+    req.request != "POST" &&
+    req.request != "TRACE" &&
+    req.request != "OPTIONS" &&
+    req.request != "DELETE") {
+      /* Non-RFC2616 or CONNECT which is weird. */
+      return (pipe);
+  }
+
+  # @TODO: Figure out a way to switch backends to allow all admin connections
+  # to happen sans health checks.
+  if (req.http.X-Some-Header == "some-value") {
+    set req.backend = administrators;
+  }
+
+  if (req.request != "GET" && req.request != "HEAD") {
+    /* We only deal with GET and HEAD by default */
+    return (pass);
+  }
+
+  // Whitelist only the Drupal session cookie (secure or otherwise) and "iv_" cookies.
+  if (req.http.Cookie) {
+    set req.http.Cookie = ";" + req.http.Cookie;
+    set req.http.Cookie = regsuball(req.http.Cookie, "; +", ";");
+    set req.http.Cookie = regsuball(req.http.Cookie, ";(S?SESS[a-z0-9]+|rh_.*)=", "; \1=");
+    set req.http.Cookie = regsuball(req.http.Cookie, ";[^ ][^;]*", "");
+    set req.http.Cookie = regsuball(req.http.Cookie, "^[; ]+|[; ]+$", "");
+  }
+
+  // Remove a ";" prefix, if present.
+  set req.http.Cookie = regsub(req.http.Cookie, "^;\s*", "");
+
+  // Remove empty cookies.
+  if (req.http.Cookie ~ "^\s*$") {
+    unset req.http.Cookie;
+  }
+
+  // If any cookies have made it this far, we assume they are designed to be varied on.
+  if (req.http.Authorization) {
+    /* Not cacheable by default */
+    return (pass);
+  }
+
+  // Skip the Varnish cache for install, update, and cron
+  if (req.url ~ "install\.php|update\.php|cron\.php") {
+    return (pass);
+  }
+
+  // Normalize the Accept-Encoding header
+  // as per: http://varnish-cache.org/wiki/FAQ/Compression
+  if (req.http.Accept-Encoding) {
+    if (req.url ~ "\.(jpg|png|gif|gz|tgz|bz2|tbz|mp3|ogg)$") {
+      # No point in compressing these
+      remove req.http.Accept-Encoding;
+    }
+    elsif (req.http.Accept-Encoding ~ "gzip") {
+      set req.http.Accept-Encoding = "gzip";
+    }
+    else {
+      # Unknown or deflate algorithm
+      remove req.http.Accept-Encoding;
+    }
+  }
+
+  // Don't let Varnish fill up with static files. Only cache aggregated css and js files.
+  if (req.url ~ "/sites/default/files/" && req.url !~ "files/(css|js)") {
+    return (pass);
+  }
+
+  // Let's have a little grace
+  set req.grace = 2m;
+
+  // Set up X-Host and X-URL headers so we can use the ban lurker / cache tags.
+  set req.http.X-Host = req.http.Host;
+  set req.http.X-URL = req.url;
+
+  return (lookup);
+}
+
+sub vcl_hash {
+  if (req.http.Cookie) {
+    hash_data(req.http.Cookie);
+  }
+}
+
+// Strip any cookies before an image/js/css is inserted into cache.
+sub vcl_fetch {
+  if (req.url ~ "\.(png|gif|jpg|swf|css|js)$") {
+    // For Varnish 2.0 or earlier, replace beresp with obj:
+    unset beresp.http.set-cookie;
+  }
+}
+
+sub vcl_deliver {
+  // Strip out some headers to mask Apache/PHP/Drupal information.
+  unset resp.http.X-Drupal-Cache;
+  unset resp.http.X-Powered-By;
+  unset resp.http.X-Varnish;
+  unset resp.http.X-Generator;
+  unset resp.http.Server;
+
+  // Don't send X-Host or X-URL headers past Varnish.
+  unset resp.http.X-Host;
+  unset resp.http.X-URL;
+}
+
+sub vcl_error {
+  // Let's deliver a friendlier error page.
+  // You can customize this as you wish.
+  set obj.http.Content-Type = "text/html; charset=utf-8";
+  synthetic {"
+  <?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <html>
+    <head>
+      <title>"} + obj.status + " " + obj.response + {"</title>
+      <style type="text/css">
+      #page {width: 400px; padding: 10px; margin: 20px auto; border: 1px solid black; background-color: #FFF;}
+      p {margin-left:20px;}
+      body {background-color: #DDD; margin: auto;}
+      </style>
+    </head>
+    <body>
+    <div id="page">
+    <h1>Page Could Not Be Loaded</h1>
+    <p>We're very sorry, but the page could not be loaded properly. This should be fixed very soon, and we apologize for any inconvenience.</p>
+    <hr />
+    <h4>Debug Info:</h4>
+    <pre>Status: "} + obj.status + {"
+Response: "} + obj.response + {"
+XID: "} + req.xid + {"</pre>
+      </div>
+    </body>
+   </html>
+  "};
+  return(deliver);
+}
+

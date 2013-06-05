@@ -1,0 +1,25 @@
+{
+  "name": "JonTheNiceGuy-simple_apache_vhost",
+  "version": "0.0.2",
+  "source": "UNKNOWN",
+  "author": "JonTheNiceGuy",
+  "license": "Apache License, Version 2.0",
+  "summary": "This puppet module provisions a single simple Apache vhost in both HTTP and HTTPS modes, enabling pretty URLs and custom base file paths",
+  "description": "This puppet module provisions a single simple Apache vhost in both HTTP and HTTPS modes. The provisioned vhost has in-built rewrite rules to point HTTP traffic to the HTTPS site, or to follow the same rules as the HTTPS component. The \"default\" rewrite rules point all unfound locations to the index.php in the stated path.",
+  "project_page": "https://github.com/JonTheNiceGuy/JonTheNiceGuy-simple_apache_vhost",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "7829c9d356394499bd793d2e953e9a29",
+    "README.md": "cec6f52f318efc1d870a3ffe65460fb0",
+    "files/ssl.key": "62d7a564eb636ac2f52eaebbb8e02d91",
+    "files/ssl.pem": "116e0fa22379d361e1b95e1dfa9d6080",
+    "manifests/init.pp": "4900deaa4943ba9f012bf48d7e1a4789",
+    "templates/ports.erb": "9f741fa4f018b586178e83059f13993d",
+    "templates/vhost.erb": "542c1cb7924ea236651f06ac60ca42e5"
+  }
+}

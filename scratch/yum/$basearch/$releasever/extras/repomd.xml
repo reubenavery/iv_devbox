@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repomd xmlns="http://linux.duke.edu/metadata/repo">
+  <data type="other_db">
+    <location href="repodata/other.sqlite.bz2"/>
+    <checksum type="sha">30509ee5ed540b7c569dbb894ff4ff9eb4dc653c</checksum>
+    <timestamp>1365712271</timestamp>
+    <open-checksum type="sha">1951098fb07d6680e8fd2869e6a957a6d2ca2fed</open-checksum>
+    <database_version>10</database_version>
+  </data>
+  <data type="other">
+    <location href="repodata/other.xml.gz"/>
+    <checksum type="sha">836e8d45c9759101b0ed8d9b3f0befb60db00f6a</checksum>
+    <timestamp>1365712262</timestamp>
+    <open-checksum type="sha">c3bcd562119112ca675f4d11830dff664746035b</open-checksum>
+  </data>
+  <data type="filelists_db">
+    <location href="repodata/filelists.sqlite.bz2"/>
+    <checksum type="sha">157bbd0a87f5143a95ca77238a3a67e0a27f0048</checksum>
+    <timestamp>1365712278</timestamp>
+    <open-checksum type="sha">6ca0a7583ae127bdd481816b297902f2e4938c37</open-checksum>
+    <database_version>10</database_version>
+  </data>
+  <data type="filelists">
+    <location href="repodata/filelists.xml.gz"/>
+    <checksum type="sha">c2d3ae0f502a4c99b431eed163432404061cb33b</checksum>
+    <timestamp>1365712262</timestamp>
+    <open-checksum type="sha">1bd7d424f1463eb6cb3251dc5315de25c5f429ea</open-checksum>
+  </data>
+  <data type="primary_db">
+    <location href="repodata/primary.sqlite.bz2"/>
+    <checksum type="sha">37f3062381526b0d383371d8d2f5b7587aa0796d</checksum>
+    <timestamp>1365712286</timestamp>
+    <open-checksum type="sha">1dff428b4c11e2b55662edec2e6262fc8769c492</open-checksum>
+    <database_version>10</database_version>
+  </data>
+  <data type="primary">
+    <location href="repodata/primary.xml.gz"/>
+    <checksum type="sha">91b20a9d5476ffc88839723a66220055d2aeaba7</checksum>
+    <timestamp>1365712262</timestamp>
+    <open-checksum type="sha">3cdf6d499cbd531d62bdf0df8ea19ab669772ac4</open-checksum>
+  </data>
+  <data type="group">
+    <location href="repodata/yumgroups.xml"/>
+    <checksum type="sha">94bb5d121e662e57176131dfabd9db1e1b8335fa</checksum>
+    <timestamp>1195902275</timestamp>
+  </data>
+</repomd>
