@@ -15,14 +15,14 @@ colone=$<%= colone %>
 coltwo=$<%= coltwo %>
 <% if pciprompt -%>
 if [ $UID -eq 0 ]; then
-  export PS1="[\[$red\]\u@PCI-\h\[$coltwo\] \W\[$reset\]]# "
+  export PS1="[\[$red\]\u@PCI-\h\[$coltwo\] \w\[$reset\]]# "
 else
-  export PS1="[\[$colone\]\u@PCI-\h\[$coltwo\] \W\[$reset\]]\$ "
+  export PS1="[\[$colone\]\u@PCI-\h\[$coltwo\] \w\[$reset\]]\$ "
 fi
 <% else -%>
 if [ $UID -eq 0 ]; then
-  export PS1="[\[$red\]\u@\h\[$coltwo\] \W\[$reset\]]# "
+  export PS1="[\[$red\]\u@\h\[$coltwo\] \w\[$reset\]]# "
 else
-  export PS1="[\[$colone\]\u@\h\[$coltwo\] \W\[$reset\]]\$ "
+  export PS1="[\[$colone\]\u@\h\[$coltwo\] \w\[$reset\]]\$ "
 fi
 <% end-%>

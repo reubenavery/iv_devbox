@@ -19,9 +19,9 @@ NameVirtualHost *:80
 <VirtualHost *:80>
     ServerName local.edit.ivillage.com
     ServerAlias local.api.ivillabe.com local.cms.ivillage.com
-    DocumentRoot "/opt/ivillage/drupal6"
+    DocumentRoot "/opt/ivillage/drupal6/drupal"
 
-    <Directory "/opt/ivillage/drupal6">
+    <Directory "/opt/ivillage/drupal6/drupal">
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny

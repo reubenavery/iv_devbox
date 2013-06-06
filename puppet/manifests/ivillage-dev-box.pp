@@ -18,6 +18,7 @@ class { 'varnish':
 }
 class { 'couchbase': }
 class { 'php': }
+# class { 'phpmyadmin': }
 class { 'pear': }
 class { 'drush': }
 

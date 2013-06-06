@@ -24,5 +24,10 @@ class php::packages {
   exec { "php_cleanup":
     command => "/vagrant/scripts/php_cleanup.sh", 
     onlyif => '/usr/bin/test -f /etc/php.d/bcmath.ini',
-  }   
+  }
+  
+  #exec { "php_create_session_dir":
+  #  command => "/bin/ln -s /opt/ivillage/gnu/php/lib/php /var/lib/php && /bin/mkdir /var/lib/php/session && /bin/chown apache:apache /var/lib/php/session",
+  #  onlyif => "/usr/bin/test ! -d /var/lib/php/session"
+  #}
 }
