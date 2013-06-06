@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  config.vm.hostname = 'ivillage-devbox'
   config.vm.box = "centos_5.9_x86_64"
   config.vm.box_url = "http://tag1consulting.com/files/centos-5.9-x86-64-minimal.box"
 
@@ -16,22 +17,22 @@ Vagrant.configure("2") do |config|
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
   
-  if File.exists?('ivillage_d6') then
+  if File.exists?( File.dirname(__FILE__) + '/ivillage_d6') then
     config.vm.synced_folder 'ivillage_d6', "/opt/ivillage/drupal6"
   end
   
   # Add mps folder if it exists
-  if File.exists?('mps') then
+  if File.exists?( File.dirname(__FILE__) + '/mps') then
     config.vm.synced_folder 'mps', "/opt/ivillage/mps"
   end
 
   # Add arwen folder if it exists
-  if File.exists?('arwen') then
+  if File.exists?( File.dirname(__FILE__) + '/arwen') then
     config.vm.synced_folder 'arwen', "/opt/ivillage/arwen"
   end
   
   # Add vishnu folder if it exists
-  if File.exists?('vishnu') then
+  if File.exists?( File.dirname(__FILE__) + '/vishnu') then
     config.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu"
   end
   

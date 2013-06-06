@@ -13,6 +13,5 @@ class { 'varnish':
 }
 class { 'couchbase': }
 class { 'php': }
-class { 'apache::mod::php': }
 class { 'pear': }
 class { 'drush': }

@@ -19,4 +19,9 @@ class php::packages {
     provider => "rpm",
     require => [ Package["php52"] ]
   }
+  
+  exec { "php_cleanup":
+    command => "/vagrant/scripts/php_cleanup.sh", 
+    onlyif => '/usr/bin/test -f /etc/php.d/bcmath.ini'
+  }   
 }

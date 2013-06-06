@@ -24,5 +24,5 @@ class php::files {
     owner => root,
     group => root,
     mode => '0555',
-  }  
+  }   
 }

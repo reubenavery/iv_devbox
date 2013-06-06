@@ -1,0 +1,63 @@
+NameVirtualHost *:8001
+
+<% if File.exists?('/opt/ivillage/vishnu') -%>
+<VirtualHost *:8001>
+    ServerName local.ivillage.com
+    DocumentRoot "/opt/ivillage/vishnu"
+
+    <Directory "/opt/ivillage/vishnu">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+<% end-%>
+
+<% if File.exists?('/opt/ivillage/drupal6') -%>
+<VirtualHost *:8001>
+    ServerName local.edit.ivillage.com
+    ServerAlias local.api.ivillabe.com local.cms.ivillage.com
+    DocumentRoot "/opt/ivillage/drupal6"
+
+    <Directory "/opt/ivillage/drupal6">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+<% end-%>
+
+<% if File.exists?('/opt/ivillage/mps') -%>
+<VirtualHost *:8001>
+    ServerName local.mps.ivillage.com
+    DocumentRoot "/opt/ivillage/mps"
+
+    <Directory "/opt/ivillage/mps">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+<% end-%>
+
+<% if File.exists?('/opt/ivillage/arwen') -%>
+<VirtualHost *:8001>
+    ServerName local.arwen.ivillage.com
+    DocumentRoot "/opt/ivillage/arwen"
+
+    <Directory "/opt/ivillage/arwen">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+<% end-%>
+

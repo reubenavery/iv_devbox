@@ -17,14 +17,14 @@ class bashrc::params($hiera_enabled=false) {
   if $hiera_enabled {
     $prompt_color_enable    = hiera('bashrc_prompt_color_enable',     true   )
     $prompt_primary         = hiera('bashrc_prompt_primary_color',   'yellow'  )
-    $prompt_secondary       = hiera('bashrc_prompt_secondary_color', 'blue' )
+    $prompt_secondary       = hiera('bashrc_prompt_secondary_color', 'cyan' )
     #$prompt_pci_switch    = hiera('bashrc_prompt_pci_switch',   false  )
   }#end withhiera case
 
   else {
     $prompt_color_enable  =  true
     $prompt_primary       = 'yellow'
-    $prompt_secondary     = 'blue'
+    $prompt_secondary     = 'cyan'
     #$prompt_pci_switch    =  false
   }#end nohiera case
   #sanitize
