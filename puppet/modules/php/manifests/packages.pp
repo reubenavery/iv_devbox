@@ -10,6 +10,7 @@ class php::packages {
     source => [ "/vagrant/puppet/modules/php/lib/php52-5.2.17-1.x86_64.rpm", "/vagrant/puppet/modules/php/lib/php52-5.2.17-2.x86_64.rpm", "/vagrant/puppet/modules/php/lib/php52-5.2.17-3.x86_64.rpm" ],
     provider => "rpm",
     require => [ Class["percona"], Package["freetype"], Package["libxslt-devel"], Package["libjpeg"], Package["libmcrypt"], Package["libpng"], Package["libtidy"], Package["libtool-ltdl"] ],
+    notify => Exec["php_cleanup"],
   }  
   
   package { "php52-pear-xml_serializer": 
@@ -22,6 +23,6 @@ class php::packages {
   
   exec { "php_cleanup":
     command => "/vagrant/scripts/php_cleanup.sh", 
-    onlyif => '/usr/bin/test -f /etc/php.d/bcmath.ini'
+    onlyif => '/usr/bin/test -f /etc/php.d/bcmath.ini',
   }   
 }

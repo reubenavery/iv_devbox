@@ -1,7 +1,7 @@
-NameVirtualHost *:8001
+NameVirtualHost *:80
 
 <% if File.exists?('/opt/ivillage/vishnu') -%>
-<VirtualHost *:8001>
+<VirtualHost *:80>
     ServerName local.ivillage.com
     DocumentRoot "/opt/ivillage/vishnu"
 
@@ -16,7 +16,7 @@ NameVirtualHost *:8001
 <% end-%>
 
 <% if File.exists?('/opt/ivillage/drupal6') -%>
-<VirtualHost *:8001>
+<VirtualHost *:80>
     ServerName local.edit.ivillage.com
     ServerAlias local.api.ivillabe.com local.cms.ivillage.com
     DocumentRoot "/opt/ivillage/drupal6"
@@ -32,7 +32,7 @@ NameVirtualHost *:8001
 <% end-%>
 
 <% if File.exists?('/opt/ivillage/mps') -%>
-<VirtualHost *:8001>
+<VirtualHost *:80>
     ServerName local.mps.ivillage.com
     DocumentRoot "/opt/ivillage/mps"
 
@@ -47,7 +47,7 @@ NameVirtualHost *:8001
 <% end-%>
 
 <% if File.exists?('/opt/ivillage/arwen') -%>
-<VirtualHost *:8001>
+<VirtualHost *:80>
     ServerName local.arwen.ivillage.com
     DocumentRoot "/opt/ivillage/arwen"
 
