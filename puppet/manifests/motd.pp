@@ -31,6 +31,6 @@ class motd {
                                                    ZZZZZZZZZZZ
                                                     ZZZZZZZZ[32m
                                                                                 
-Welcome to an iVillage VM managed by Vagrant, VirtualBox, and Puppet.[0m\n\n"
+Hello there, how are you?[0m\n\n"
   }
 }

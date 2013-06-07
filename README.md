@@ -12,7 +12,7 @@ How to use this:
   6. Profit!
 
 This box will detect if the following directories exist here and if they do, will create virtual host entries in Apache:
-  - ivillage_d6 (drupal)
+  - iv6 (drupal)
   - vishnu
   - arwen
   - mps
