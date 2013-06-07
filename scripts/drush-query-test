@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-output = `drush sql-query "SELECT 1"`
-
-if /^1/.match(output)
-  exit 0
-end
-
-exit 1
