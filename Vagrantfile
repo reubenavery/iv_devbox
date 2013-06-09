@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
       iv6.vm.box = "centos_5.9_x86_64"
       iv6.vm.box_url = "http://tag1consulting.com/files/centos-5.9-x86-64-minimal.box"
       #iv6.vm.network :forwarded_port, guest: 80, host: 8001
-      iv6.vm.synced_folder 'iv6', "/opt/ivillage/drupal6"
+      iv6.vm.synced_folder 'iv6', "/opt/ivillage/drupal6", :owner => 'apache'
 
       iv6.vm.provision :puppet do |puppet|
         puppet.options = '--environment=drupal6'
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
       vishnu.vm.network :private_network, ip: "192.168.50.102"
       vishnu.vm.box = "centos_6.0_x86_64"
       vishnu.vm.box_url = "http://dl.dropbox.com/u/9227672/CentOS-6.0-x86_64-netboot-4.1.6.box"
-      vishnu.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu"
+      vishnu.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu", :owner => 'apache'
 
       vishnu.vm.provision :puppet do |puppet|
         puppet.options = '--environment=vishnu'
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       mps.vm.network :private_network, ip: "192.168.50.104"
       mps.vm.box = "centos_6.4_x86_64"
       mps.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
-      mps.vm.synced_folder 'mps', "/opt/ivillage/mps"
+      mps.vm.synced_folder 'mps', "/opt/ivillage/mps", :owner => 'apache'
 
       mps.vm.provision :puppet do |puppet|
         puppet.options = '--environment=mps'
@@ -86,7 +86,7 @@ Vagrant.configure("2") do |config|
       arwen.vm.network :private_network, ip: "192.168.50.105"
       arwen.vm.box = "centos_6.4_x86_64"
       arwen.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
-      arwen.vm.synced_folder 'arwen', "/opt/ivillage/arwen"
+      arwen.vm.synced_folder 'arwen', "/opt/ivillage/arwen", :owner => 'apache'
 
       arwen.vm.provision :puppet do |puppet|
         puppet.options = '--environment=arwen'

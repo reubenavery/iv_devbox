@@ -20,7 +20,7 @@
 #
 class selinux(
   $mode = 'enforcing',
-  $installmake = true,
+  $installmake = true
   ) {
   include stdlib
   include selinux::params
