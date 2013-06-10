@@ -12,10 +12,10 @@ Vagrant.configure("2") do |config|
     config.vm.define :iv6 do |iv6|
       iv6.vm.hostname = 'ivillage-iv6-devbox'
       iv6.vm.network :private_network, ip: "192.168.50.101"
-      iv6.vm.box = "centos_5.9_x86_64"
-      iv6.vm.box_url = "http://tag1consulting.com/files/centos-5.9-x86-64-minimal.box"
+      iv6.vm.box = "iv_centos_5.9_x86_64.v1"
+      iv6.vm.box_url = "https://www.dropbox.com/s/246g93kbbfs3tez/iv_centos_5.9_x86_64.v1.box"
       #iv6.vm.network :forwarded_port, guest: 80, host: 8001
-      iv6.vm.synced_folder 'iv6', "/opt/ivillage/drupal6", :owner => 'apache'
+      iv6.vm.synced_folder 'iv6', "/opt/ivillage/drupal6", :owner => 'www'
 
       iv6.vm.provision :puppet do |puppet|
         puppet.options = '--environment=drupal6'
@@ -31,9 +31,9 @@ Vagrant.configure("2") do |config|
     config.vm.define :vishnu do |vishnu|
       vishnu.vm.hostname = 'ivillage-vishnu-devbox'
       vishnu.vm.network :private_network, ip: "192.168.50.102"
-      vishnu.vm.box = "centos_6.0_x86_64"
-      vishnu.vm.box_url = "http://dl.dropbox.com/u/9227672/CentOS-6.0-x86_64-netboot-4.1.6.box"
-      vishnu.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu", :owner => 'apache'
+      vishnu.vm.box = "iv_centos_6.0_x86_64.v1"
+      vishnu.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
+      vishnu.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu", :owner => 'www'
 
       vishnu.vm.provision :puppet do |puppet|
         puppet.options = '--environment=vishnu'
@@ -48,8 +48,8 @@ Vagrant.configure("2") do |config|
 #   config.vm.define :mysql do |mysql|
 #     mysql.vm.hostname = 'ivillage-mysql-devbox'
 #     mysql.vm.network :private_network, ip: "192.168.50.103"
-#     mysql.vm.box = "centos_6.4_x86_64"
-#     mysql.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
+#     mysql.vm.box = "iv_centos_6.0_x86_64.v1"
+#     mysql.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
 #
 #     #mysql.vm.network :forwarded_port, guest: 3306, host: 33006
 #
@@ -66,9 +66,9 @@ Vagrant.configure("2") do |config|
     config.vm.define :mps do |mps|
       mps.vm.hostname = 'ivillage-mps-devbox'
       mps.vm.network :private_network, ip: "192.168.50.104"
-      mps.vm.box = "centos_6.4_x86_64"
-      mps.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
-      mps.vm.synced_folder 'mps', "/opt/ivillage/mps", :owner => 'apache'
+      mps.vm.box = "iv_centos_6.0_x86_64.v1"
+      mps.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
+      mps.vm.synced_folder 'mps', "/opt/ivillage/mps", :owner => 'www'
 
       mps.vm.provision :puppet do |puppet|
         puppet.options = '--environment=mps'
@@ -84,9 +84,9 @@ Vagrant.configure("2") do |config|
     config.vm.define :arwen do |arwen|
       arwen.vm.hostname = 'ivillage-arwen-devbox'
       arwen.vm.network :private_network, ip: "192.168.50.105"
-      arwen.vm.box = "centos_6.4_x86_64"
-      arwen.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box"
-      arwen.vm.synced_folder 'arwen', "/opt/ivillage/arwen", :owner => 'apache'
+      arwen.vm.box = "iv_centos_6.0_x86_64.v1"
+      arwen.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
+      arwen.vm.synced_folder 'arwen', "/opt/ivillage/arwen", :owner => 'www'
 
       arwen.vm.provision :puppet do |puppet|
         puppet.options = '--environment=arwen'

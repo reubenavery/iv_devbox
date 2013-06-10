@@ -2,7 +2,7 @@ class apache::packages {
   package { "httpd":
     name => "httpd",
     ensure => installed,
-    notify => Exec['apache_cleanup'],
+    notify => [ Exec['apache_cleanup'], File['/etc/httpd/conf/httpd.conf'] ],
   }
   
   exec { 'apache_cleanup':

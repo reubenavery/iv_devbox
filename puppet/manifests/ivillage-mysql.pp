@@ -2,10 +2,6 @@
 # Main Puppet manifest for ivillage-drupal6 vagrant dev box
 #
 
-class { 'selinux': 
-  mode => 'permissive'
-}
-
 # Prevent an error in Puppet 2.7 with `puppet apply` when the puppet user
 # and group do not exist.
 group { "puppet":

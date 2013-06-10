@@ -15,12 +15,18 @@ class apache::files {
   
   file { "/opt/ivillage":
     ensure => directory,
-    owner => 'apache',
-    group => 'apache',
+    owner => 'www',
+    seluser => 'system_u',
+    seltype => 'httpd_sys_content_t',
     notify => [ Service["httpd"], Exec["make-webdir-readable"] ],
   }
   
   exec { "make-webdir-readable":
-    command => "/bin/chmod -R o+rwX /opt/ivillage"
+    command => "/bin/chmod -R o+rwX /opt/ivillage",
+  }
+  
+  file { "/etc/httpd/conf/httpd.conf": 
+    ensure => file,
+    source => "puppet:///modules/apache/$environment/httpd.conf",
   }
 }
