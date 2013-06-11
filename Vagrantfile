@@ -15,8 +15,12 @@ Vagrant.configure("2") do |config|
       iv6.vm.box = "iv_centos_5.9_x86_64.v1"
       iv6.vm.box_url = "https://www.dropbox.com/s/246g93kbbfs3tez/iv_centos_5.9_x86_64.v1.box"
       #iv6.vm.network :forwarded_port, guest: 80, host: 8001
+      
       iv6.vm.synced_folder 'iv6', "/opt/ivillage/drupal6", :owner => 'www'
-
+      iv6.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", 1024]
+      end
+      
       iv6.vm.provision :puppet do |puppet|
         puppet.options = '--environment=drupal6'
         puppet.manifest_file = 'ivillage-drupal6.pp'
@@ -24,6 +28,7 @@ Vagrant.configure("2") do |config|
         puppet.module_path = 'puppet/modules'
       end
     end
+    
   end
 
   # If the vishnu directory is present, spin up a VM for this listening on 192.168.50.102.
@@ -34,6 +39,11 @@ Vagrant.configure("2") do |config|
       vishnu.vm.box = "iv_centos_6.0_x86_64.v1"
       vishnu.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
       vishnu.vm.synced_folder 'vishnu', "/opt/ivillage/vishnu", :owner => 'www'
+      
+      vishnu.vm.synced_folder 'iv6', "/opt/ivillage/drupal6", :owner => 'www'
+      vishnu.vm.provider :virtualbox do |vb|
+        vb.customize ["modifyvm", :id, "--memory", 1024]
+      end
 
       vishnu.vm.provision :puppet do |puppet|
         puppet.options = '--environment=vishnu'
