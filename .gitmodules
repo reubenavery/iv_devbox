@@ -6,4 +6,4 @@
 	url = git://github.com/puppetlabs/puppetlabs-stdlib
 [submodule "puppet/modules/pear"]
 	path = puppet/modules/pear
-	url = git://github.com/treehouseagency/puppet-pear.git
+	url = git://github.com/reubidium/puppet-pear.git
