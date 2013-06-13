@@ -16,6 +16,7 @@ How to use this:
   2. Edit your local hosts file and add these lines (if these private IP addresses conflict on your network, you will need to change these settings in the VagrantFile):
      192.168.50.101 local.edit.ivillage.com local.api.ivillage.com local.cms.ivillage.com
      192.168.50.102 local.ivillage.com local.www.ivillage.com
+     192.168.50.103 local.d7.ivillage.com
      192.168.50.104 local.mps.ivillage.com
      192.168.50.105 local.mps.ivillage.com
   3. In the same directory as this README file, run in a terminal 'vagrant up'
@@ -24,7 +25,7 @@ How to use this:
 
 Create desired environment directories
 --------------------------------------
-The box provisioning script will spin up a server each for iv6, vishnu, mps, and/or arwen if a matching directory is found within this directory.  Boxes will spin up only if a directory is found for the respective application.
+The box provisioning script will spin up a server each for iv6, iv7, vishnu, mps, and/or arwen if a matching directory is found within this directory.  Boxes will spin up only if a directory is found for the respective application.
 
 Note: MySQL (Percona) is installed with a blank root password on all boxes.
 
