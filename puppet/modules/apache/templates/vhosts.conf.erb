@@ -17,10 +17,11 @@ NameVirtualHost *:80
 
 <% if File.exists?('/opt/ivillage/drupal6') -%>
 <VirtualHost *:80>
-    ServerName local.d7.ivillage.com
-    DocumentRoot "/opt/ivillage/drupal/drupal"
+    ServerName local.edit.ivillage.com
+    ServerAlias local.api.ivillabe.com local.cms.ivillage.com
+    DocumentRoot "/opt/ivillage/drupal6/drupal"
 
-    <Directory "/opt/ivillage/drupal/drupal">
+    <Directory "/opt/ivillage/drupal6/drupal">
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny
@@ -32,11 +33,10 @@ NameVirtualHost *:80
 
 <% if File.exists?('/opt/ivillage/drupal7') -%>
 <VirtualHost *:80>
-    ServerName local.edit.ivillage.com
-    ServerAlias local.api.ivillabe.com local.cms.ivillage.com
-    DocumentRoot "/opt/ivillage/drupal6/drupal"
+    ServerName local.d7.ivillage.com
+    DocumentRoot "/opt/ivillage/drupal7/drupal"
 
-    <Directory "/opt/ivillage/drupal6/drupal">
+    <Directory "/opt/ivillage/drupal7/drupal">
         Options Indexes FollowSymLinks MultiViews
         AllowOverride All
         Order allow,deny

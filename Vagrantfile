@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       end
 
       iv6.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=drupal6 --debug --verbose'
+        puppet.options = '--environment=drupal6 --verbose'
         puppet.manifest_file = 'ivillage-drupal6.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       end
 
       vishnu.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=vishnu --debug --verbose'
+        puppet.options = '--environment=vishnu --verbose'
         puppet.manifest_file = 'ivillage-vishnu.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'
@@ -62,13 +62,13 @@ Vagrant.configure("2") do |config|
       iv7.vm.box_url = "https://www.dropbox.com/s/246g93kbbfs3tez/iv_centos_5.9_x86_64.v1.box"
       #iv7.vm.network :forwarded_port, guest: 80, host: 8001
 
-      iv7.vm.synced_folder 'iv7', "/opt/ivillage/drupal", :owner => 'www'
+      iv7.vm.synced_folder 'iv7', "/opt/ivillage/drupal7", :owner => 'www'
       iv7.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", 1024]
       end
 
       iv7.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=drupal7 --debug --verbose'
+        puppet.options = '--environment=drupal7 --verbose'
         puppet.manifest_file = 'ivillage-drupal7.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'

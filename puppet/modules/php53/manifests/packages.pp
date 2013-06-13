@@ -19,6 +19,11 @@ class php53::packages {
     notify => Service["httpd"],
   }
   
+  package { "xdebug":
+    ensure => installed,
+    provider => "pecl"
+  }
+  
 #  package { "ssh2-0.12":
 #    ensure => installed,
 #    provider => 'pecl'
