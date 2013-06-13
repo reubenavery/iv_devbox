@@ -22,7 +22,7 @@ class php52::packages {
   }
   
   exec { "php52_cleanup":
-    command => "/vagrant/scripts/php_cleanup.sh", 
+    command => "/vagrant/puppet/scripts/php_cleanup.sh", 
     onlyif => '/usr/bin/test -f /etc/php.d/bcmath.ini',
   }
   

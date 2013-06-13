@@ -17,6 +17,21 @@ NameVirtualHost *:80
 
 <% if File.exists?('/opt/ivillage/drupal6') -%>
 <VirtualHost *:80>
+    ServerName local.d7.ivillage.com
+    DocumentRoot "/opt/ivillage/drupal/drupal"
+
+    <Directory "/opt/ivillage/drupal/drupal">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+</VirtualHost>
+<% end-%>
+
+<% if File.exists?('/opt/ivillage/drupal7') -%>
+<VirtualHost *:80>
     ServerName local.edit.ivillage.com
     ServerAlias local.api.ivillabe.com local.cms.ivillage.com
     DocumentRoot "/opt/ivillage/drupal6/drupal"

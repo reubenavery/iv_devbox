@@ -13,14 +13,20 @@ class php53::packages {
     require => Package["couchbase-server"],
   }
   
-  package { ["php-pecl-imagick", "php-pecl-ssh2", "php-pecl-geoip" ] :
+  package { ["php-pecl-imagick", "php-pecl-geoip" ] :
     ensure => installed,
     require => [ Package["php"], Package["ImageMagick"], Exec["grab-epel"] ],
     notify => Service["httpd"],
   }
+  
+#  package { "ssh2-0.12":
+#    ensure => installed,
+#    provider => 'pecl'
+#  }
 
   exec { "grab-epel":
     command => '/bin/rpm -ivh http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm',
     creates => '/etc/yum.repos.d/epel.repo'
   }
+
 }

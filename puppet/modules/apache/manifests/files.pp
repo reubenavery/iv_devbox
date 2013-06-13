@@ -18,12 +18,13 @@ class apache::files {
     owner => 'www',
     seluser => 'system_u',
     seltype => 'httpd_sys_content_t',
-    notify => [ Service["httpd"], Exec["make-webdir-readable"] ],
+    notify => Service["httpd"],
   }
   
-  exec { "make-webdir-readable":
-    command => "/bin/chmod -R o+rwX /opt/ivillage",
-  }
+#  exec { "make-webdir-readable":
+#    command => "/bin/chmod -R o+rwX /opt/ivillage",
+#    onlyif => "/usr/bin/test"
+#  }
   
   file { "/etc/httpd/conf/httpd.conf": 
     ensure => file,
