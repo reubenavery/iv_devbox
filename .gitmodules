@@ -1,4 +1,0 @@
-[submodule "puppet/modules/selinux/spec/fixtures/modules/stdlib"]
-  path = puppet/modules/selinux/spec/fixtures/modules/stdlib
-  url = git://github.com/puppetlabs/puppetlabs-stdlib
-
