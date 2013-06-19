@@ -5,9 +5,12 @@ class varnish::repositories {
     enabled => 1,
     gpgcheck => 0,
   }
-  yumrepo { 'EPEL': 
-    baseurl => "http://dl.fedoraproject.org/pub/epel/5/\$basearch/",
-    descr => "Extra Packages for Enterprise Linux",
-    enabled => 1,
+  if $environment == 'drupal6' {
+    # Epel repo is provided for in php53::packages
+    yumrepo { 'epel': 
+      baseurl => "http://dl.fedoraproject.org/pub/epel/5/\$basearch/",
+      descr => "Extra Packages for Enterprise Linux",
+      enabled => 1,
+    }
   }
 }

@@ -33,6 +33,7 @@ class { 'percona': }
 class { 'couchbase': }
 class { 'php53': }
 class { 'pear': }
+class { 'pecl': }
 
 # Open up httpd log directory access for easy viewing.
 file { "/var/log/httpd" :

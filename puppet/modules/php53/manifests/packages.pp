@@ -19,10 +19,15 @@ class php53::packages {
     notify => Service["httpd"],
   }
   
-  package { "xdebug":
+  package { "php-pecl-xdebug":
     ensure => installed,
-    provider => "pecl"
+    require => [ Package["php"], Package["php-cli"], Exec['grab-epel'], ],
   }
+  
+#  pecl::package { "xdebug":
+#    ensure => installed,
+#    require => [ Package["php"], Package["php-cli"] ],
+#  }
   
 #  package { "ssh2-0.12":
 #    ensure => installed,
@@ -30,7 +35,7 @@ class php53::packages {
 #  }
 
   exec { "grab-epel":
-    command => '/bin/rpm -ivh http://mirror.pnl.gov/epel/6/i386/epel-release-6-8.noarch.rpm',
+    command => '/bin/rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm',
     creates => '/etc/yum.repos.d/epel.repo'
   }
 
