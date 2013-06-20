@@ -10,11 +10,14 @@ define pecl::package(
     $pecl_source = "${repository}/${package}"
   }
 
-  package { "pecl-${repository}-${package}":
-    name => $package,
-    provider => "pecl",
-    source => $pecl_source,
-    ensure => $version,
-    require => Class["pecl"],
+  # pecl is already part of RHEL's PHP
+  if $::osfamily != 'RedHat' {
+    package { "pecl-${repository}-${package}":
+      name => $package,
+      provider => "pecl",
+      source => $pecl_source,
+      ensure => $version,
+      require => Class["pecl"],
+    }
   }
 }

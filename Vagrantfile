@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
       end
 
       iv6.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=drupal6 --verbose'
+        puppet.options = '--environment=drupal6'
         puppet.manifest_file = 'ivillage-drupal6.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       end
 
       vishnu.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=vishnu --verbose'
+        puppet.options = '--environment=vishnu'
         puppet.manifest_file = 'ivillage-vishnu.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
       end
 
       iv7.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=drupal7 --verbose'
+        puppet.options = '--environment=drupal7'
         puppet.manifest_file = 'ivillage-drupal7.pp'
         puppet.manifests_path = 'puppet/manifests'
         puppet.module_path = 'puppet/modules'

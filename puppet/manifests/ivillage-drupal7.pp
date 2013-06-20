@@ -39,7 +39,7 @@ class { 'couchbase': }
 class { 'php53': }
 # class { 'phpmyadmin': }
 class { 'pear': }
-class { 'pecl': }
+#class { 'pecl': }
 class { 'drush': }
 
 # Open up httpd log directory access for easy viewing.
