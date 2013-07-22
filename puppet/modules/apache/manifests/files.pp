@@ -4,6 +4,9 @@ class apache::files {
     content => template("${module_name}/vhosts.conf.erb"),
     notify => Service["httpd"],
     require => [ Package["httpd"], File["/opt/ivillage"] ],
+    owner => 'root',
+    group => 'root',
+    mode => '0644'
   }
   
   file { "/etc/httpd/conf.d/apache-tuning.conf":
@@ -11,6 +14,9 @@ class apache::files {
     source => "puppet:///modules/apache/$environment/apache-tuning.conf",
     notify => Service["httpd"],
     require => Package["httpd"],
+    owner => 'root',
+    group => 'root',
+    mode => '0644'
   }
   
   file { "/opt/ivillage":
@@ -29,5 +35,8 @@ class apache::files {
   file { "/etc/httpd/conf/httpd.conf": 
     ensure => file,
     source => "puppet:///modules/apache/$environment/httpd.conf",
+    owner => 'root',
+    group => 'root',
+    mode => '0644'
   }
 }

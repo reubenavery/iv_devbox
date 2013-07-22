@@ -14,7 +14,7 @@ class phpmyadmin {
 
   file { "phpmyadmin config":
     path => "/opt/ivillage/phpMyAdmin-4.0.3-all-languages/config.inc.php",
-    source => "puppet:///modules/phpmyadmin/$environment/config.inc.php",
+    content => template("${module_name}/config.inc.php.erb"),
     require => Exec["unzip phpmyadmin"],
   }
 }

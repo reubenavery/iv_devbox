@@ -23,11 +23,17 @@ class varnish::files (
 
   file { "/etc/varnish/default.vcl" :
     content => template("${module_name}/default.vcl.erb"),
+    owner => root,
+    group => root,
+    mode => '0644',
     notify => Service["varnish"],
   }
 
   file { "/etc/sysconfig/varnish" :
     content => template("${module_name}/varnish-sysconfig.erb"),
     notify => Service["varnish"],
+    owner => root,
+    group => root,
+    mode => '0644',
   }
 }
