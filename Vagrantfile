@@ -76,22 +76,6 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # Spin up a VM for MySQL listening on 192.168.50.103.
-#   config.vm.define :mysql do |mysql|
-#     mysql.vm.hostname = 'ivillage-mysql-devbox'
-#     mysql.vm.network :private_network, ip: "192.168.50.103"
-#     mysql.vm.box = "iv_centos_6.0_x86_64.v1"
-#     mysql.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
-#
-#     #mysql.vm.network :forwarded_port, guest: 3306, host: 33006
-#
-#     mysql.vm.provision :puppet do |puppet|
-#       puppet.options = '--environment=mysql'
-#       puppet.manifest_file = 'ivillage-mysql.pp'
-#       puppet.manifests_path = 'puppet/manifests'
-#       puppet.module_path = 'puppet/modules'
-#     end
-#   end
 
   # If the mps directory is present, spin up a VM for this listening on 192.168.50.104.
   if File.exists?( File.dirname(__FILE__) + '/mps' ) then
@@ -111,22 +95,5 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  # If the arwen directory is present, spin up a VM for this listening on 192.168.50.105.
-  if File.exists?( File.dirname(__FILE__) + '/arwen' ) then
-    config.vm.define :arwen do |arwen|
-      arwen.vm.hostname = 'ivillage-arwen-devbox'
-      arwen.vm.network :private_network, ip: "192.168.50.105"
-      arwen.vm.box = "iv_centos_6.0_x86_64.v1"
-      arwen.vm.box_url = "https://www.dropbox.com/s/jbmk8ykskhwu1yj/iv_centos_6.0_x86_64.v1.box"
-      arwen.vm.synced_folder 'arwen', "/opt/ivillage/arwen", :owner => 'www'
-
-      arwen.vm.provision :puppet do |puppet|
-        puppet.options = '--environment=arwen'
-        puppet.manifest_file = 'ivillage-arwen.pp'
-        puppet.manifests_path = 'puppet/manifests'
-        puppet.module_path = 'puppet/modules'
-      end
-    end
-  end
 
 end

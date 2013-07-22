@@ -5,8 +5,8 @@ Welcome!  This Vagrant dev box was created with the intention of mirroring the i
 
 Minimum System Requirements:
 ----------------------------
-   - VirtualBox 4.2.12 <https://www.virtualbox.org/wiki/Downloads>
-   - Vagrant 1.2.2 <http://downloads.vagrantup.com/>
+   - VirtualBox 4.2.16 <https://www.virtualbox.org/wiki/Downloads>
+   - Vagrant 1.2.4 <http://downloads.vagrantup.com/>
    - 4GB RAM
    - 64 bit operating system (Mac OS X or Linux highly recommended)
 
@@ -18,10 +18,8 @@ How to use this:
      192.168.50.102 local.ivillage.com local.www.ivillage.com
      192.168.50.103 local.d7.ivillage.com
      192.168.50.104 local.mps.ivillage.com
-     192.168.50.105 local.mps.ivillage.com
   3. In the same directory as this README file, run in a terminal 'vagrant up'
-  4. ???
-  5. Profit!
+  4. The initial provisioning process can take awhile.  Should errors occur, try re-running via 'vagrant provision'
 
 Create desired environment directories
 --------------------------------------
