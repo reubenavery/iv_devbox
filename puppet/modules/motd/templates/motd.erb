@@ -1,9 +1,4 @@
-class motd {
- File { owner => 0, group => 0, mode => 0644 }
-
- file { "/etc/motd":
-
-   content => "[1m[36m
+[1m[36m
                             ?ZZZ
                            ZZZZZZ
                           ZZZZ7ZZ?
@@ -30,7 +25,6 @@ class motd {
                                                   ZZZZ    IZZZ?
                                                    ZZZZZZZZZZZ
                                                     ZZZZZZZZ[32m
-                                                                                
-Hello there, how are you?[0m\n\n"
-  }
-}
+
+Hello there, how are you?[0m
+
