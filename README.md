@@ -3,12 +3,19 @@ iVillage Vagrant Dev Box
 
 Welcome!  This Vagrant dev box was created with the intention of mirroring the iVillage production server environment as closely as possible, and to create a standardized development environment for all techies.  Since this is hosted on GitHub, environment enhancements and fixes can be distributed simply by performing a 'git pull' and then 'vagrant provision'.
 
-Minimum System Requirements:
-----------------------------
-   - VirtualBox 4.2.16 <https://www.virtualbox.org/wiki/Downloads>
-   - Vagrant 1.2.4 <http://downloads.vagrantup.com/>
+System Requirements:  
+--------------------
+Host computer must have at a minimum:
    - 4GB RAM
    - 64 bit operating system (Mac OS X or Linux highly recommended)
+
+Download and install these:
+   - VirtualBox 4.2.12 <https://www.virtualbox.org/wiki/Download_Old_Builds_4_2>
+   - Vagrant 1.2.4  <http://downloads.vagrantup.com/tags/v1.2.4>
+   - Git <http://git-scm.com/downloads>
+   - Recommended if you are running Windows: <http://cygwin.com/setup-x86_64.exe>
+
+* Note the above version numbers are important.  Problems have been found when upgrading to the latest versions of Vagrant and VirtualBox when they come out.
 
 How to use this:
 ----------------

@@ -19,7 +19,7 @@ user { "puppet":
 }
 
 # We don't want no stinkin' iptables on our locals.
-service { "iptables" :
+service { ["iptables", "ip6tables"] :
   ensure => stopped,
   enable => false,
   hasstatus => true,
