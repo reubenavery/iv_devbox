@@ -47,9 +47,13 @@ Use the `vagrant ssh <box_id>` command in your shell.  For example, `vagrant ssh
 
 Note for Windows users: since Windows doesn't have ssh built in, this will not work and you will need to do a little hacking.  see <http://stackoverflow.com/questions/9885108/ssh-to-vagrant-box-in-windows> for a helpful discussion on this.
 
-Installing new versions of this package
----------------------------------------
-From time to time, new configuration versions will be released.  To apply these, simply do a "git pull" followed by "vagrant reload".  It's that simple!
+MySQL
+-----
+Note: The MySQL server is installed with a blank password for root.  To work with the database, you will either `vagrant ssh` in to the box, or tunnel in via SSH.
+
+Staying current with new versions of this package
+-------------------------------------------------
+From time to time, new configuration versions will be released.  To apply these, simply do a `git pull` followed by `vagrant reload`.  It's that simple!
 
 Other Vagrant commands
 ----------------------
@@ -69,5 +73,5 @@ It is recommended that you install and use Cygwin to interact with Vagrant.  Dow
 Interested in learning more?
 ----------------------------
 Check out the following websites:
-http://docs.vagrantup.com/v2/getting-started/index.html
-http://docs.puppetlabs.com/#puppetpuppet
+<http://docs.vagrantup.com/v2/getting-started/index.html>
+<http://docs.puppetlabs.com/#puppetpuppet>
