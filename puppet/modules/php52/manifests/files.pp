@@ -9,7 +9,7 @@ class php52::files {
   }
 
   file { "/etc/php.d":
-    source => "puppet:///modules/php52/etc/php.d",
+    source => "puppet:///modules/php52/php.d",
     ensure => directory,
     notify => Service["httpd"],
     require => Class["php52::packages"],
@@ -19,10 +19,11 @@ class php52::files {
   }
   
   file { "/etc/bashrc.d/php52.sh":
-    source => "puppet:///modules/php52/etc/bashrc.d/php52.sh",
+    source => "puppet:///modules/php52/bashrc.d/php52.sh",
+    ensure => file,
     require => Class["bashrc::rhel"],
     owner => root,
     group => root,
-    mode => '0555',
+    mode => '0644',
   }   
 }
